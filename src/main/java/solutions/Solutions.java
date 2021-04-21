@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
  * @author Suleyman Yildirim
  */
 public class Solutions {
-    
+
     public static boolean checkIfExist(int[] arr) {
         for (int idx = 0; idx < arr.length; idx++) {
             for (int j = 0; j < arr.length; j++) {
@@ -59,17 +59,44 @@ public class Solutions {
     public static int findMaxConsecutiveOnes(int[] nums) {
         int maxConsecutive = 0;
         int current = 0;
-        for(int i = 0; i < nums.length; i++){
-            if(nums[i] == 1){
+        for (int num : nums) {
+            if (num == 1) {
                 current++;
-                maxConsecutive = Math.max(maxConsecutive,current);
-            }
-            else{
+                maxConsecutive = Math.max(maxConsecutive, current);
+            } else {
                 current = 0;
             }
         }
 
         return maxConsecutive;
+    }
+
+    /**
+     * Given two strings,  and , that may not be of the same length, determine the minimum number of character deletions required to make  and  anagrams.
+     * Any characters can be deleted from either of the strings.
+     *
+     * @param s1 string s1: a string
+     * @param s1 string s2: a string
+     *
+     * @return the minimum number of deletions needed
+     */
+    public static int makingAnagrams(String s1, String s2) {
+        int[] chars1Frequency = new int[26];
+        int[] chars2Frequency = new int[26];
+
+        getFrequency(s1.toCharArray(), chars1Frequency);
+        getFrequency(s2.toCharArray(), chars2Frequency);
+
+        return IntStream.range(0, 26)
+                .map(i -> Math.abs(chars1Frequency[i] - chars2Frequency[i]))
+                .sum();
+    }
+
+    private static void getFrequency(char[] chars, int[] charsFrequency) {
+        for (char value : chars) {
+            int positionCurrentChar = Character.getNumericValue(value) - Character.getNumericValue('a');
+            charsFrequency[positionCurrentChar]++;
+        }
     }
 
 }

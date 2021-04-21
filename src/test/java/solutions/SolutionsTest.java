@@ -41,4 +41,11 @@ public class SolutionsTest {
     public void findMaxConsecutiveOnes(){
         assertEquals(3,Solutions.findMaxConsecutiveOnes(new int[]{1,1,0,1,1,1}));
     }
+
+    @Test
+    public void makingAnagrams(){
+        assertEquals(3, Solutions.makingAnagrams("cdea", "abc"));
+        assertEquals(6, Solutions.makingAnagrams("abc", "amnop"));
+        assertEquals(19, Solutions.makingAnagrams("absdjkvuahdakejfnfauhdsaavasdlkj", "djfladfhiawasdkjvalskufhafablsdkashlahdfa"));
+    }
 }

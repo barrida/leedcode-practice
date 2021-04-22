@@ -48,4 +48,10 @@ public class SolutionsTest {
         assertEquals(6, Solutions.makingAnagrams("abc", "amnop"));
         assertEquals(19, Solutions.makingAnagrams("absdjkvuahdakejfnfauhdsaavasdlkj", "djfladfhiawasdkjvalskufhafablsdkashlahdfa"));
     }
+
+    @Test
+    public void findEvenNumberOfDigits(){
+        assertEquals(2,Solutions.findEvenNumberOfDigits(new int[]{12,345,2,6,7896}));
+    }
+
 }

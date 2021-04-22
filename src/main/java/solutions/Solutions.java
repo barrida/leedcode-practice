@@ -99,4 +99,25 @@ public class Solutions {
         }
     }
 
+    /**
+     * Given an array nums of integers, return how many of them contain an even number of digits.
+     * @param ints
+     * @return
+     */
+    public static int findEvenNumberOfDigits(int[] ints) {
+
+        int result = 0;
+        for (int num: ints) {
+            int digits = 0;
+            while (num != 0){
+                num = num / 10;
+                digits++;
+            }
+
+            if (digits %2 == 0)
+                result++;
+        }
+
+        return result;
+    }
 }

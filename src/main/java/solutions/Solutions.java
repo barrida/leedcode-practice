@@ -120,4 +120,16 @@ public class Solutions {
 
         return result;
     }
+
+    /**
+     *  Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+     * @param nums
+     * @return
+     */
+    public static int[] sortedSquares(int[] nums) {
+        IntStream.range(0, nums.length)
+                .forEach(i -> nums[i] *= nums[i]);
+        Arrays.sort(nums);
+        return nums;
+    }
 }

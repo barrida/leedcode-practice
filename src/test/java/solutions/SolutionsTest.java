@@ -5,6 +5,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -52,6 +55,13 @@ public class SolutionsTest {
     @Test
     public void findEvenNumberOfDigits(){
         assertEquals(2,Solutions.findEvenNumberOfDigits(new int[]{12,345,2,6,7896}));
+    }
+
+    @Test
+    public void sortedSquares(){
+        int[] actual = Solutions.sortedSquares(new int[]{-4, -1, 0, 3, 10});
+        int[] expected = {0, 1, 9, 16, 100};
+        assertEquals(Arrays.toString(expected),Arrays.toString(actual));
     }
 
 }

@@ -132,4 +132,27 @@ public class Solutions {
         Arrays.sort(nums);
         return nums;
     }
+
+    /**
+     *  Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+     * @param nums
+     * @return
+     */
+    public static int[] sortedSquaresWithoutArraysSort(int[] nums) {
+        int positiveIndex = nums.length - 1;
+        int negativeIndex = 0;
+        int[] output = new int[nums.length];
+
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (Math.abs(nums[negativeIndex]) > Math.abs(nums[positiveIndex])){
+                output[i] = nums[negativeIndex] * nums[negativeIndex];
+                negativeIndex++;
+            } else {
+                output[i] = nums[positiveIndex] * nums[positiveIndex];
+                positiveIndex--;
+            }
+        }
+
+        return output;
+    }
 }

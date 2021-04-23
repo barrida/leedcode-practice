@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
@@ -61,6 +60,13 @@ public class SolutionsTest {
     public void sortedSquares(){
         int[] actual = Solutions.sortedSquares(new int[]{-4, -1, 0, 3, 10});
         int[] expected = {0, 1, 9, 16, 100};
+        assertEquals(Arrays.toString(expected),Arrays.toString(actual));
+    }
+
+    @Test
+    public void sortedSquaresWithoutArraysSort(){
+        int[] actual = Solutions.sortedSquaresWithoutArraysSort(new int[]{-6, -4, 1, 2, 3, 5});
+        int[] expected = {1, 4, 9, 16, 25, 36};
         assertEquals(Arrays.toString(expected),Arrays.toString(actual));
     }
 

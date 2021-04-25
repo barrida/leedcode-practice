@@ -179,23 +179,30 @@ public class Solutions {
         int mIndex = 0;
         int nIndex = 0;
         int indexSortedArr = 0;
-        while (mIndex < m) {
-            if (nums1[mIndex] <= nums2[nIndex]) {
-                sorted[indexSortedArr] = nums1[mIndex];
-                mIndex++;
-                indexSortedArr++;
-            } else {
-                sorted[indexSortedArr] = nums2[nIndex];
-                nIndex++;
-                indexSortedArr++;
+        if (m==0 && n!=0) {
+            return nums2;
+        } else if (m!=0 && n==0) {
+            return nums1;
+        } else {
+            while (mIndex < m) {
+                if (nIndex == n){
+                    if (nums1[mIndex] > nums2[nIndex-1]){
+                        sorted[indexSortedArr] = nums1[mIndex];
+                        return sorted;
+                    }
+                } else if (nums1[mIndex] <= nums2[nIndex]) {
+                    sorted[indexSortedArr++] = nums1[mIndex++];
+                } else {
+                    sorted[indexSortedArr++] = nums2[nIndex++];
+                }
             }
+
+            for (int i = nIndex; i < n; i++) {
+                sorted[indexSortedArr++] = nums2[i];
+            }
+            return sorted;
         }
 
-        for (int i = nIndex; i < n; i++) {
-            sorted[indexSortedArr++] = nums2[i];
-        }
-
-        return sorted;
     }
 
     /**

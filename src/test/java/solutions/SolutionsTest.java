@@ -91,6 +91,18 @@ public class SolutionsTest {
         int[] expected3 = {2,5,6};
         assertEquals(Arrays.toString(expected3),Arrays.toString(sortedArray3));
 
+        int[] sortedArray4 = Solutions.mergeSortedArrays(new int[] {2,0}, 1, new int[] {1}, 1);
+        int[] expected4 = {1,2};
+        assertEquals(Arrays.toString(expected4),Arrays.toString(sortedArray4));
+
+        int[] sortedArray5 = Solutions.mergeSortedArrays(new int[] {2,5,6}, 3, new int[] {}, 0);
+        int[] expected5 = {2,5,6};
+        assertEquals(Arrays.toString(expected5),Arrays.toString(sortedArray5));
+
+        int[] sortedArray6 = Solutions.mergeSortedArrays(new int[] {1}, 1, new int[] {}, 0);
+        int[] expected6 = {1};
+        assertEquals(Arrays.toString(expected6),Arrays.toString(sortedArray6));
+
     }
 
 }

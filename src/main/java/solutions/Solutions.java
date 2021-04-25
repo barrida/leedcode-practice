@@ -77,7 +77,6 @@ public class Solutions {
      *
      * @param s1 string s1: a string
      * @param s1 string s2: a string
-     *
      * @return the minimum number of deletions needed
      */
     public static int makingAnagrams(String s1, String s2) {
@@ -101,20 +100,21 @@ public class Solutions {
 
     /**
      * Given an array nums of integers, return how many of them contain an even number of digits.
+     *
      * @param ints
      * @return
      */
     public static int findEvenNumberOfDigits(int[] ints) {
 
         int result = 0;
-        for (int num: ints) {
+        for (int num : ints) {
             int digits = 0;
-            while (num != 0){
+            while (num != 0) {
                 num = num / 10;
                 digits++;
             }
 
-            if (digits %2 == 0)
+            if (digits % 2 == 0)
                 result++;
         }
 
@@ -122,7 +122,8 @@ public class Solutions {
     }
 
     /**
-     *  Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+     * Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+     *
      * @param nums
      * @return
      */
@@ -134,7 +135,8 @@ public class Solutions {
     }
 
     /**
-     *  Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+     * Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+     *
      * @param nums
      * @return
      */
@@ -144,7 +146,7 @@ public class Solutions {
         int[] output = new int[nums.length];
 
         for (int i = nums.length - 1; i >= 0; i--) {
-            if (Math.abs(nums[negativeIndex]) > Math.abs(nums[positiveIndex])){
+            if (Math.abs(nums[negativeIndex]) > Math.abs(nums[positiveIndex])) {
                 output[i] = nums[negativeIndex] * nums[negativeIndex];
                 negativeIndex++;
             } else {
@@ -154,5 +156,78 @@ public class Solutions {
         }
 
         return output;
+    }
+
+    /**
+     * Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array
+     * <p>
+     *     Create 2 pointers for num1 and num2
+     *     If num1 < num2 insert num1 to sorted array and increase num1 pointer
+     *     otherwise insert num1 to sorted array and increase num2 pointer
+     * Time Complexity O(n+m)
+     * Space Complexity O(n+m)
+     *
+     * @param nums1
+     * @param m
+     * @param nums2
+     * @param n
+     * @return
+     */
+    public static int[] mergeSortedArrays(int[] nums1, int m, int[] nums2, int n) {
+
+        int[] sorted = new int[m + n];
+        int mIndex = 0;
+        int nIndex = 0;
+        int indexSortedArr = 0;
+        while (mIndex < m) {
+            if (nums1[mIndex] <= nums2[nIndex]) {
+                sorted[indexSortedArr] = nums1[mIndex];
+                mIndex++;
+                indexSortedArr++;
+            } else {
+                sorted[indexSortedArr] = nums2[nIndex];
+                nIndex++;
+                indexSortedArr++;
+            }
+        }
+
+        for (int i = nIndex; i < n; i++) {
+            sorted[indexSortedArr++] = nums2[i];
+        }
+
+        return sorted;
+    }
+
+    /**
+     * Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array
+     * <p>
+     * Naive solution:
+     * Create a new array from nums1 and nums2, then sort it.
+     * <p>
+     * Time Complexity (n+m) log(n+m)
+     * Space Complexity O(n+m)
+     *
+     * @param nums1
+     * @param m
+     * @param nums2
+     * @param n
+     * @return
+     */
+    public static int[] mergeSortedArraysNaive(int[] nums1, int m, int[] nums2, int n) {
+
+        int[] sorted = new int[m + n];
+        int j = 0;
+
+        for (int i = 0; i < nums1.length; i++) {
+            sorted[i] = nums1[i];
+            if (sorted[i] == 0) {
+                sorted[i] = nums2[j];
+                j++;
+            }
+        }
+
+        Arrays.sort(sorted);
+        return sorted;
+
     }
 }

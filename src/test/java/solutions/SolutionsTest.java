@@ -70,4 +70,27 @@ public class SolutionsTest {
         assertEquals(Arrays.toString(expected),Arrays.toString(actual));
     }
 
+    @Test
+    public void mergeSortedArraysNaive(){
+        int[] sortedArray = Solutions.mergeSortedArraysNaive(new int[] {1,2,3,0,0,0}, 3, new int[] {2,5,6}, 3);
+        int[] expected = {1,2,2,3,5,6};
+        assertEquals(Arrays.toString(expected),Arrays.toString(sortedArray));
+    }
+
+    @Test
+    public void mergeSortedNonArraysWithTwoIndex(){
+        int[] sortedArray = Solutions.mergeSortedArrays(new int[] {1,3,4,5}, 4, new int[] {2,4,6,8}, 4);
+        int[] expected = {1,2,3,4,4,5,6,8};
+        assertEquals(Arrays.toString(expected),Arrays.toString(sortedArray));
+
+        int[] sortedArray2 = Solutions.mergeSortedArrays(new int[] {1,2,3,0,0,0}, 3, new int[] {2,5,6}, 3);
+        int[] expected2 = {1,2,2,3,5,6};
+        assertEquals(Arrays.toString(expected2),Arrays.toString(sortedArray2));
+
+        int[] sortedArray3 = Solutions.mergeSortedArrays(new int[] {}, 0, new int[] {2,5,6}, 3);
+        int[] expected3 = {2,5,6};
+        assertEquals(Arrays.toString(expected3),Arrays.toString(sortedArray3));
+
+    }
+
 }

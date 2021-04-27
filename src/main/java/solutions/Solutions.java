@@ -7,6 +7,8 @@ import java.util.stream.IntStream;
  * @author Suleyman Yildirim
  */
 public class Solutions {
+    private Solutions() {
+    }
 
     public static boolean checkIfExist(int[] arr) {
         for (int idx = 0; idx < arr.length; idx++) {
@@ -28,13 +30,11 @@ public class Solutions {
 
     public static int removeDuplicates(int[] nums) {
         int unique = 0;
-        System.out.println("start: " + Arrays.toString(nums));
         for (int i = 0; i < nums.length - 1; i++) {
             if (nums[i + 1] != nums[i]) {
                 nums[++unique] = nums[i + 1];
             }
         }
-        System.out.println("end: " + Arrays.toString(nums));
         return ++unique;
     }
 
@@ -179,28 +179,30 @@ public class Solutions {
         int mIndex = 0;
         int nIndex = 0;
         int indexSortedArr = 0;
-        if (m==0 && n!=0) {
+        if (m == 0 && n != 0) {
             return nums2;
-        } else if (m!=0 && n==0) {
-            return nums1;
         } else {
-            while (mIndex < m) {
-                if (nIndex == n){
-                    if (nums1[mIndex] > nums2[nIndex-1]){
-                        sorted[indexSortedArr] = nums1[mIndex];
-                        return sorted;
+            if (m!=0 && n==0) {
+                return nums1;
+            } else {
+                while (mIndex < m) {
+                    if (nIndex == n){
+                        if (nums1[mIndex] > nums2[nIndex-1]){
+                            sorted[indexSortedArr] = nums1[mIndex];
+                            return sorted;
+                        }
+                    } else if (nums1[mIndex] <= nums2[nIndex]) {
+                        sorted[indexSortedArr++] = nums1[mIndex++];
+                    } else {
+                        sorted[indexSortedArr++] = nums2[nIndex++];
                     }
-                } else if (nums1[mIndex] <= nums2[nIndex]) {
-                    sorted[indexSortedArr++] = nums1[mIndex++];
-                } else {
-                    sorted[indexSortedArr++] = nums2[nIndex++];
                 }
-            }
 
-            for (int i = nIndex; i < n; i++) {
-                sorted[indexSortedArr++] = nums2[i];
+                for (int i = nIndex; i < n; i++) {
+                    sorted[indexSortedArr++] = nums2[i];
+                }
+                return sorted;
             }
-            return sorted;
         }
 
     }

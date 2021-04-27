@@ -237,4 +237,33 @@ public class Solutions {
         return sorted;
 
     }
+
+    /**
+     * Given an array arr, replace every element in that array with the greatest element among the elements to its right, and replace the last element with -1.
+     *
+     * After doing so, return the array.
+     * @param arr
+     * @return
+     */
+    public static int[] replaceElements(int[] arr) {
+        int max = 0;
+        if (arr.length == 1) {
+            arr[0] = -1;
+            return arr;
+        }
+        for (int i = 0; i < arr.length -1 ; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (j == i+1)
+                    max = arr[j];
+                else if (arr[j] > max) {
+                    max = arr[j];
+                }
+            }
+            arr[i] = max;
+        }
+
+        arr[arr.length -1] = -1;
+        return arr;
+
+    }
 }

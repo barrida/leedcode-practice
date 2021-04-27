@@ -105,4 +105,9 @@ public class SolutionsTest {
 
     }
 
+    @Test
+    public void replaceElementsWithGreatestElementOnRightSide(){
+        assertEquals("[-1]",Arrays.toString(Solutions.replaceElements(new int[] {400})));
+        assertEquals("[18, 6, 6, 6, 1, -1]",Arrays.toString(Solutions.replaceElements(new int[] {17,18,5,4,6,1})));
+    }
 }

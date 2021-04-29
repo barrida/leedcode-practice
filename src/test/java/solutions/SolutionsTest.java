@@ -110,4 +110,26 @@ public class SolutionsTest {
         assertEquals("[-1]",Arrays.toString(Solutions.replaceElements(new int[] {400})));
         assertEquals("[18, 6, 6, 6, 1, -1]",Arrays.toString(Solutions.replaceElements(new int[] {17,18,5,4,6,1})));
     }
+
+    @Test
+    public void moveZeroes(){
+        int[] nums =  {0, 1, 0, 3, 12};
+        assertEquals("[1, 3, 12, 0, 0]", Arrays.toString(Solutions.moveZeroes(nums)));
+        assertEquals("[1, 3, 12, 0, 0]", Arrays.toString(Solutions.moveZeroesWithStreamsApi(nums)));
+    }
+
+    @Test
+    public void sortArrayByParity(){
+        int[] nums =  {3,1,2,4};
+        assertEquals("[2, 4, 3, 1]", Arrays.toString(Solutions.sortArrayByParity(nums)));
+        assertEquals("[4, 2, 1, 3]", Arrays.toString(Solutions.sortArrayByParityInPlace(nums)));
+    }
+
+    @Test
+    public void lengthOfLongestSubstring(){
+        assertEquals(3, Solutions.lengthOfLongestSubstring("abcabcbb"));
+        assertEquals(1, Solutions.lengthOfLongestSubstring("bbbbb"));
+        assertEquals(3, Solutions.lengthOfLongestSubstring("pwwkew"));
+        assertEquals(0, Solutions.lengthOfLongestSubstring(""));
+    }
 }

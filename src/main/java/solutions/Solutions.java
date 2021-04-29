@@ -1,6 +1,7 @@
 package solutions;
 
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 /**
@@ -161,9 +162,9 @@ public class Solutions {
     /**
      * Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array
      * <p>
-     *     Create 2 pointers for num1 and num2
-     *     If num1 < num2 insert num1 to sorted array and increase num1 pointer
-     *     otherwise insert num1 to sorted array and increase num2 pointer
+     * Create 2 pointers for num1 and num2
+     * If num1 < num2 insert num1 to sorted array and increase num1 pointer
+     * otherwise insert num1 to sorted array and increase num2 pointer
      * Time Complexity O(n+m)
      * Space Complexity O(n+m)
      *
@@ -182,12 +183,12 @@ public class Solutions {
         if (m == 0 && n != 0) {
             return nums2;
         } else {
-            if (m!=0 && n==0) {
+            if (m != 0 && n == 0) {
                 return nums1;
             } else {
                 while (mIndex < m) {
-                    if (nIndex == n){
-                        if (nums1[mIndex] > nums2[nIndex-1]){
+                    if (nIndex == n) {
+                        if (nums1[mIndex] > nums2[nIndex - 1]) {
                             sorted[indexSortedArr] = nums1[mIndex];
                             return sorted;
                         }
@@ -242,8 +243,9 @@ public class Solutions {
 
     /**
      * Given an array arr, replace every element in that array with the greatest element among the elements to its right, and replace the last element with -1.
-     *
+     * <p>
      * After doing so, return the array.
+     *
      * @param arr
      * @return
      */
@@ -253,19 +255,123 @@ public class Solutions {
             arr[0] = -1;
             return arr;
         }
-        for (int i = 0; i < arr.length -1 ; i++) {
+        for (int i = 0; i < arr.length - 1; i++) {
             for (int j = i + 1; j < arr.length; j++) {
-                if (j == i+1)
-                    max = arr[j];
-                else if (arr[j] > max) {
-                    max = arr[j];
-                }
+                if (j == i + 1 || arr[j] > max) max = arr[j];
             }
             arr[i] = max;
         }
 
-        arr[arr.length -1] = -1;
+        arr[arr.length - 1] = -1;
         return arr;
 
+    }
+
+    /**
+     * Time Complexity: O(N), where N is the length of nums.
+     * <p>
+     * Space Complexity: O(1), the space used by the answer.
+     *
+     * @param nums
+     * @return
+     */
+    public static int[] moveZeroes(int[] nums) {
+        int pointerOnes = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[pointerOnes++] = nums[i];
+            }
+        }
+        for (int i = pointerOnes; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+        return nums;
+    }
+
+    /**
+     * Time Complexity: O(N), where N is the length of nums.
+     * <p>
+     * Space Complexity: O(1), the space used by the answer.
+     *
+     * @param nums
+     * @return
+     */
+    public static int[] moveZeroesWithStreamsApi(int[] nums) {
+        AtomicInteger pointerOnes = new AtomicInteger();
+        IntStream.range(0, nums.length)
+                .filter(i -> nums[i] != 0)
+                .forEach(i -> nums[pointerOnes.getAndIncrement()] = nums[i]);
+
+        IntStream.range(pointerOnes.get(), nums.length)
+                .forEach(i -> nums[i] = 0);
+        return nums;
+    }
+
+    /**
+     * Time Complexity: O(N), where N is the length of A.
+     * <p>
+     * Space Complexity: O(N), the space used by the answer.
+     *
+     * @param nums
+     * @return
+     */
+    public static int[] sortArrayByParity(int[] nums) {
+        int evenCounter = 0;
+        int[] res = new int[nums.length];
+
+        for (int num : nums) {
+            if (num % 2 == 0) {
+                res[evenCounter++] = num;
+            }
+        }
+        for (int num : nums) {
+            if (num % 2 != 0) {
+                res[evenCounter++] = num;
+            }
+        }
+        return res;
+    }
+
+    /**
+     * We'll maintain two pointers i and j. The loop invariant is everything below i has parity 0 (ie. A[k] % 2 == 0 when k < i), and everything above j has parity 1.
+     * <p>
+     * Then, there are 4 cases for (A[i] % 2, A[j] % 2):
+     * <p>
+     * If it is (0, 1), then everything is correct: i++ and j--.
+     * <p>
+     * If it is (1, 0), we swap them so they are correct, then continue.
+     * <p>
+     * If it is (0, 0), only the i place is correct, so we i++ and continue.
+     * <p>
+     * If it is (1, 1), only the j place is correct, so we j-- and continue.
+     * <p>
+     * Throughout all 4 cases, the loop invariant is maintained, and j-i is getting smaller. So eventually we will be done with the array sorted as desired.
+     * @// TODO: 29/04/2021 check later
+     * @param A
+     * @return
+     */
+    public static int[] sortArrayByParityInPlace(int[] A) {
+        int i = 0;
+        int j = A.length - 1;
+        while (i < j) {
+            if (A[i] % 2 > A[j] % 2) {
+                int tmp = A[i];
+                A[i] = A[j];
+                A[j] = tmp;
+            }
+
+            if (A[i] % 2 == 0) i++;
+            if (A[j] % 2 == 1) j--;
+        }
+
+        return A;
+    }
+
+    public static int lengthOfLongestSubstring(String s) {
+        // "abcabcbb"
+        int res = 0;
+        if (s.length()==0)
+            return 0;
+        return res;
     }
 }

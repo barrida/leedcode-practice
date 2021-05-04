@@ -367,11 +367,61 @@ public class Solutions {
         return A;
     }
 
+    /**
+     * @todo unfinished
+     * @param s
+     * @return
+     */
     public static int lengthOfLongestSubstring(String s) {
         // "abcabcbb"
-        int res = 0;
+        int res = 1;
+        int i = 0;
+        int j = 1;
         if (s.length()==0)
             return 0;
+        char[] chars = s.toCharArray();
+        while ( j < s.length()){
+            if (chars[j] != s.charAt(i)){
+                j++;
+            } else if (res <= s.substring(i,j).length()){
+               // res = Math.max(res,s.substring(i,j).length());
+                res = s.substring(i,j).length();
+                i++;
+            } else {
+                j++;
+            }
+        }
+
         return res;
+    }
+
+    /**
+     * Given an integer array nums, find the contiguous subarray (containing at least one number)
+     * which has the largest sum and return its sum.
+     *
+     * Solved using Kadane's Algorithm: https://en.wikipedia.org/wiki/Maximum_subarray_problem
+     *
+     *
+     * maxSubArray(numbers):
+     *     """Find the largest sum of any contiguous subarray."""
+     *     best_sum = Integer.MIN_VALUE
+     *     current_sum = 0
+     *     for x in numbers:
+     *         current_sum = max(x, current_sum + x)
+     *         best_sum = max(best_sum, current_sum)
+     *     return best_sum
+     *
+     * @param nums
+     * @return
+     */
+    public static int maxSubArray(int[] nums) {
+        if(nums == null || nums.length == 0) return 0;
+        int currentSum = 0;
+        int bestSum = Integer.MIN_VALUE;
+        for (int x : nums) {
+            currentSum = Math.max(x, currentSum + x);
+            bestSum = Math.max(bestSum, currentSum);
+        }
+        return bestSum;
     }
 }

@@ -143,4 +143,20 @@ public class SolutionsTest {
         assertEquals(1, Solutions.maxSubArray(new int[]{1}));
         assertEquals(-1, Solutions.maxSubArray(new int[]{-5, -4, -1, -7, -8}));
     }
+
+    @Test
+    public void fixReverseDigitsSolutionBug(){
+        assertEquals("7885574",Solutions.fixReverseDigitsSolutionBug(4755887));
+        assertEquals("97531",Solutions.fixReverseDigitsSolutionBug(13579));
+        assertEquals("10011",Solutions.fixReverseDigitsSolutionBug(11001));
+        assertEquals("1",Solutions.fixReverseDigitsSolutionBug(10000));
+        assertEquals("11001",Solutions.fixReverseDigitsSolutionBug(100110));
+    }
+
+    @Test
+    public void soldierRank(){
+        assertEquals(5, Solutions.soldierRank(new int[]{3,4,3,0,2,2,3,0,0}));
+        assertEquals(0, Solutions.soldierRank(new int[]{4,2,0}));
+        assertEquals(3, Solutions.soldierRank(new int[]{4,4,3,3,1,0}));
+    }
 }

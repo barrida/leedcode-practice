@@ -1,6 +1,9 @@
 package solutions;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
@@ -346,9 +349,10 @@ public class Solutions {
      * If it is (1, 1), only the j place is correct, so we j-- and continue.
      * <p>
      * Throughout all 4 cases, the loop invariant is maintained, and j-i is getting smaller. So eventually we will be done with the array sorted as desired.
-     * @// TODO: 29/04/2021 check later
+     *
      * @param A
      * @return
+     * @// TODO: 29/04/2021 check later
      */
     public static int[] sortArrayByParityInPlace(int[] A) {
         int i = 0;
@@ -368,24 +372,24 @@ public class Solutions {
     }
 
     /**
-     * @todo unfinished
      * @param s
      * @return
+     * @todo unfinished
      */
     public static int lengthOfLongestSubstring(String s) {
         // "abcabcbb"
         int res = 1;
         int i = 0;
         int j = 1;
-        if (s.length()==0)
+        if (s.length() == 0)
             return 0;
         char[] chars = s.toCharArray();
-        while ( j < s.length()){
-            if (chars[j] != s.charAt(i)){
+        while (j < s.length()) {
+            if (chars[j] != s.charAt(i)) {
                 j++;
-            } else if (res <= s.substring(i,j).length()){
-               // res = Math.max(res,s.substring(i,j).length());
-                res = s.substring(i,j).length();
+            } else if (res <= s.substring(i, j).length()) {
+                // res = Math.max(res,s.substring(i,j).length());
+                res = s.substring(i, j).length();
                 i++;
             } else {
                 j++;
@@ -398,24 +402,24 @@ public class Solutions {
     /**
      * Given an integer array nums, find the contiguous subarray (containing at least one number)
      * which has the largest sum and return its sum.
-     *
+     * <p>
      * Solved using Kadane's Algorithm: https://en.wikipedia.org/wiki/Maximum_subarray_problem
-     *
-     *
+     * <p>
+     * <p>
      * maxSubArray(numbers):
-     *     """Find the largest sum of any contiguous subarray."""
-     *     best_sum = Integer.MIN_VALUE
-     *     current_sum = 0
-     *     for x in numbers:
-     *         current_sum = max(x, current_sum + x)
-     *         best_sum = max(best_sum, current_sum)
-     *     return best_sum
+     * """Find the largest sum of any contiguous subarray."""
+     * best_sum = Integer.MIN_VALUE
+     * current_sum = 0
+     * for x in numbers:
+     * current_sum = max(x, current_sum + x)
+     * best_sum = max(best_sum, current_sum)
+     * return best_sum
      *
      * @param nums
      * @return
      */
     public static int maxSubArray(int[] nums) {
-        if(nums == null || nums.length == 0) return 0;
+        if (nums == null || nums.length == 0) return 0;
         int currentSum = 0;
         int bestSum = Integer.MIN_VALUE;
         for (int x : nums) {
@@ -423,5 +427,53 @@ public class Solutions {
             bestSum = Math.max(bestSum, currentSum);
         }
         return bestSum;
+    }
+
+    public static int soldierRank(int[] ranks) {
+        int result = 0;
+        NavigableMap<Integer, Integer> map = new TreeMap<>();
+        for (int rank : ranks) {
+            if (!map.containsKey(rank)) {
+                map.put(rank, 1);
+            } else {
+                Integer count = map.get(rank);
+                map.put(rank, ++count);
+            }
+        }
+        for (Map.Entry<Integer, Integer> rank : map.entrySet()) {
+            Map.Entry<Integer, Integer> prev = map.lowerEntry(rank.getKey());
+            if (prev != null && rank.getKey() == prev.getKey() + 1) {
+                result += prev.getValue();
+            }
+        }
+        return result;
+    }
+
+    public void reverseDigitsSolutionWithBug(int N) {
+        int enable_print = N % 10;
+        while (N > 0) {
+            if (enable_print == 0 && N % 10 != 0) {
+                enable_print = 1;
+            }
+            else if (enable_print == 1) {
+                System.out.print(N % 10);
+            }
+            N = N / 10;
+        }
+    }
+
+    public static String fixReverseDigitsSolutionBug(int N) {
+        String s = "";
+        int enable_print = 0;
+        while (N > 0) {
+            if (N % 10 != 0) {
+                enable_print = 1;
+            }
+            if (enable_print==1) {
+                s+= Integer.toString(N % 10);
+            }
+            N = N / 10;
+        }
+        return s;
     }
 }

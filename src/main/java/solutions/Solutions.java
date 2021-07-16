@@ -1,9 +1,7 @@
 package solutions;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.NavigableMap;
-import java.util.TreeMap;
+import java.math.BigInteger;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
@@ -31,7 +29,6 @@ public class Solutions {
                         .anyMatch(j -> (i != j) && (arr[i] == 2 * arr[j])));
     }
 
-
     public static int removeDuplicates(int[] nums) {
         int unique = 0;
         for (int i = 0; i < nums.length - 1; i++) {
@@ -39,6 +36,8 @@ public class Solutions {
                 nums[++unique] = nums[i + 1];
             }
         }
+
+        System.out.println(Arrays.toString(nums));
         return ++unique;
     }
 
@@ -454,8 +453,7 @@ public class Solutions {
         while (N > 0) {
             if (enable_print == 0 && N % 10 != 0) {
                 enable_print = 1;
-            }
-            else if (enable_print == 1) {
+            } else if (enable_print == 1) {
                 System.out.print(N % 10);
             }
             N = N / 10;
@@ -469,8 +467,8 @@ public class Solutions {
             if (N % 10 != 0) {
                 enable_print = 1;
             }
-            if (enable_print==1) {
-                s+= Integer.toString(N % 10);
+            if (enable_print == 1) {
+                s += Integer.toString(N % 10);
             }
             N = N / 10;
         }

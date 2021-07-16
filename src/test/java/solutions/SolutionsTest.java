@@ -5,9 +5,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * @author Suleyman Yildirim
@@ -21,22 +22,15 @@ public class SolutionsTest {
 
     @Test
     public void checkIfExist() {
+        System.out.println(Solutions.checkIfExist(new int[]{2, 5, 7}));
+        System.out.println(Solutions.checkIfExist(new int[]{2, 1, 5}));
+        System.out.println(Solutions.checkIfExistWithStreamApi(new int[]{2, 1, 5}));
     }
 
     @Test
-    public void checkIfExistWithStreamApi() {
-    }
-
-    @Test
-    public void removeDuplicates() {
-    }
-
-    @Test
-    public void isPalindromeWithStringBuilder() {
-    }
-
-    @Test
-    public void isPalindromeWithArray() {
+    public void removeDuplicatesFromSortedArray() {
+        assertEquals(5, Solutions.removeDuplicates(new int[]{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}));
+        assertEquals(2, Solutions.removeDuplicates(new int[]{1, 1, 1, 2}));
     }
 
     @Test
@@ -145,18 +139,18 @@ public class SolutionsTest {
     }
 
     @Test
-    public void fixReverseDigitsSolutionBug(){
-        assertEquals("7885574",Solutions.fixReverseDigitsSolutionBug(4755887));
-        assertEquals("97531",Solutions.fixReverseDigitsSolutionBug(13579));
-        assertEquals("10011",Solutions.fixReverseDigitsSolutionBug(11001));
-        assertEquals("1",Solutions.fixReverseDigitsSolutionBug(10000));
-        assertEquals("11001",Solutions.fixReverseDigitsSolutionBug(100110));
+    public void fixReverseDigitsSolutionBug() {
+        assertEquals("7885574", Solutions.fixReverseDigitsSolutionBug(4755887));
+        assertEquals("97531", Solutions.fixReverseDigitsSolutionBug(13579));
+        assertEquals("10011", Solutions.fixReverseDigitsSolutionBug(11001));
+        assertEquals("1", Solutions.fixReverseDigitsSolutionBug(10000));
+        assertEquals("11001", Solutions.fixReverseDigitsSolutionBug(100110));
     }
 
     @Test
-    public void soldierRank(){
-        assertEquals(5, Solutions.soldierRank(new int[]{3,4,3,0,2,2,3,0,0}));
-        assertEquals(0, Solutions.soldierRank(new int[]{4,2,0}));
-        assertEquals(3, Solutions.soldierRank(new int[]{4,4,3,3,1,0}));
+    public void soldierRank() {
+        assertEquals(5, Solutions.soldierRank(new int[]{3, 4, 3, 0, 2, 2, 3, 0, 0}));
+        assertEquals(0, Solutions.soldierRank(new int[]{4, 2, 0}));
+        assertEquals(3, Solutions.soldierRank(new int[]{4, 4, 3, 3, 1, 0}));
     }
 }

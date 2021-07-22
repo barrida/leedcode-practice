@@ -38,12 +38,6 @@ public class SolutionsTest {
         assertEquals(3, Solutions.findMaxConsecutiveOnes(new int[]{1, 1, 0, 1, 1, 1}));
     }
 
-    @Test
-    public void makingAnagrams() {
-        assertEquals(3, Solutions.makingAnagrams("cdea", "abc"));
-        assertEquals(6, Solutions.makingAnagrams("abc", "amnop"));
-        assertEquals(19, Solutions.makingAnagrams("absdjkvuahdakejfnfauhdsaavasdlkj", "djfladfhiawasdkjvalskufhafablsdkashlahdfa"));
-    }
 
     @Test
     public void findEvenNumberOfDigits() {
@@ -117,14 +111,6 @@ public class SolutionsTest {
         int[] nums = {3, 1, 2, 4};
         assertEquals("[2, 4, 3, 1]", Arrays.toString(Solutions.sortArrayByParity(nums)));
         assertEquals("[4, 2, 1, 3]", Arrays.toString(Solutions.sortArrayByParityInPlace(nums)));
-    }
-
-    @Test
-    public void lengthOfLongestSubstring() {
-        assertEquals(3, Solutions.lengthOfLongestSubstring("abcabcbb"));
-        assertEquals(1, Solutions.lengthOfLongestSubstring("bbbbb"));
-        assertEquals(3, Solutions.lengthOfLongestSubstring("pwwkew"));
-        assertEquals(0, Solutions.lengthOfLongestSubstring(""));
     }
 
     @Test
